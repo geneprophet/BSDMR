@@ -1,0 +1,45 @@
+Package: BSDMR
+Type: Package
+Title: Find DMRs between species by high order methylation profile
+Version: 1.0
+Date: 2020-08-27
+Authors@R: person("Hongen", "Kang", email = "geneprophet@163.com", role = c("aut", "cre"))
+Author: Hongen Kang
+Maintainer: Hongen Kang <geneprophet@163.com>
+Description: Extracting higher order methylation profiles by GLM to find DMRs between species.
+             A region-based method to find DMR.
+Encoding: UTF-8
+LazyData: true
+License: MIT + file LICENSE
+Imports: 
+    Rcpp,
+    GenomicRanges,
+    data.table,
+    ggplot2,
+    magrittr,
+    methods,
+    assertthat,
+    IRanges,
+    parallel,
+    doParallel,
+    foreach,
+    S4Vectors,
+    stats,
+    base,
+    matrixcalc,
+    readr,
+    rtracklayer,
+    dplyr,
+    BiocGenerics,
+    utils
+LinkingTo: 
+    Rcpp,
+    RcppArmadillo
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
+biocViews: DNAMethylation,
+    DifferentialMethylation,
+    Epigenetics,
+    FeatureExtraction,
+    Bayesian

@@ -1,0 +1,10 @@
+BSDMR.Rproj
+.Rhistory
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+src/*.o
+src/*.so
+src/*.dll
+inst/extdata/*.chain
