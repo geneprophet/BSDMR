@@ -16,9 +16,11 @@ knitr::opts_chunk$set(
 # BSDMR
 
 <!-- badges: start -->
+
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-The goal of BSDMR is to find DMRs BETWEEN species.
+The goal of BSDMR is to find DMRs between species by high order methylation profile.
 
 ## Installation
 
@@ -43,18 +45,13 @@ library(BSDMR)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
 
 You can also embed plots, for example:
 
 ```{r pressure, echo = FALSE}
-plot(pressure)
+plot_infer_profiles(region = 44, obj_prof = human_fit_profiles,obj_mean = human_fit_mean, 
+                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[44]))
 ```
 
 In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
