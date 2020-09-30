@@ -5,20 +5,16 @@
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-The goal of BSDMR is to find DMRs BETWEEN species.
+The goal of BSDMR is to find DMRs between species by high order
+methylation profile.
 
 ## Installation
 
-You can install the released version of BSDMR from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("BSDMR")
-```
-
-And the development version from
+You can install the development version from
 [GitHub](https://github.com/geneprophet/BSDMR) with:
 
 ``` r
@@ -28,33 +24,84 @@ devtools::install_github("geneprophet/BSDMR")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to use the package:
 
 ``` r
+#library the package
 library(BSDMR)
-## basic example code
+#example pipeline
+#step1. read files
+##read methylation report (the result of bismark)
+file <- system.file("extdata", "example_human_CpG_report.txt", package = "BSDMR")
+human_met <- read_methylation_report(file,min_coverage=4,type = "CG")
+#> reading methylation report file ...
+file <- system.file("extdata", "example_mouse_CpG_report.txt", package = "BSDMR")
+mouse_met <- read_methylation_report(file,min_coverage=4,type = "CG")
+#> reading methylation report file ...
+
+##read annotation file (customized region)
+file <- system.file("extdata", "example_human_annotation.txt", package = "BSDMR")
+human_anno <- read_annotation(file)
+#> reading annotation file...
+file <- system.file("extdata", "example_mouse_annotation.txt", package = "BSDMR")
+mouse_anno <- read_annotation(file)
+#> reading annotation file...
+
+#step2. cluster_sites_to_region
+human_region <- cluster_sites_to_region(methylation = human_met,
+                                        annotation = human_anno,
+                                        min_sites_number = 10,
+                                        max_distance_between_sites = 200,
+                                        is_parallel = TRUE)
+
+#step3. liftOver map the human_region to the annotated region of another species(mouse)
+filePath <- system.file("extdata", "hg38ToMm10.over.chain", package = "BSDMR")
+mouse_region <- change_genomic_coordinate(human_region,filePath,mouse_anno)
+
+#step4. create region object as the input of modeling
+human_obj <- create_region_object(human_met, human_region)
+#> Creating methylation regions ...
+mouse_obj <- create_region_object(mouse_met, mouse_region)
+#> Creating methylation regions ...
+
+#step5. infer profiles of reion object
+human_basis_profile <- create_rbf_object(M = 8)
+human_fit_profiles <- infer_profiles_vb(X = human_obj$met, model = "binomial",
+                                        basis = human_basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+#> infering the methylation profiles by variational bayes....
+
+human_basis_mean <- create_rbf_object(M = 0)
+human_fit_mean <- infer_profiles_vb(X = human_obj$met, model = "binomial",
+                                    basis = human_basis_mean, is_parallel = TRUE, vb_max_iter = 100)
+#> infering the methylation profiles by variational bayes....
+
+mouse_basis_profile <- create_rbf_object(M = 8)
+mouse_fit_profiles <- infer_profiles_vb(X = mouse_obj$met, model = "binomial",
+                                        basis = mouse_basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+#> infering the methylation profiles by variational bayes....
+
+mouse_basis_mean <- create_rbf_object(M = 0)
+mouse_fit_mean <- infer_profiles_vb(X = mouse_obj$met, model = "binomial",
+                                    basis = mouse_basis_mean, is_parallel = TRUE, vb_max_iter = 100)
+#> infering the methylation profiles by variational bayes....
+
+#step6. computer the adjusted consine distance of profiles and measure the similarity
+similarity <- adjusted_cosine_similarity(queryProfiles = human_fit_profiles,subjectProfiles = mouse_fit_profiles)
+
+#step7. visualization
+which(similarity<0.1)
+#> [1] 1645 3186 7135
+similarity[3186]
+#> [1] 0.04402974
+plot_infer_profiles(region = 3186, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
+                    obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[3186]))
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+<img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+plot_infer_profiles(region = 3186, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
+                    obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[3186]))
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
+<img src="man/figures/README-example-2.png" width="100%" />
