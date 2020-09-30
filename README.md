@@ -29,7 +29,9 @@ This is a basic example which shows you how to use the package:
 ``` r
 #library the package
 library(BSDMR)
+
 #example pipeline
+
 #step1. read files
 ##read methylation report (the result of bismark)
 file <- system.file("extdata", "example_human_CpG_report.txt", package = "BSDMR")
