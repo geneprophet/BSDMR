@@ -50,9 +50,9 @@ create_region_object <- function(met_dt,
                                  ignore_strand = TRUE, 
                                  is_parallel = TRUE,
                                  no_cores = NULL) {
+  #the site location will map to [-1,1]
   fmin = -1
   fmax = 1
-  sd_thresh = 1e-1000
   message("Creating methylation regions ...")
   assertthat::assert_that(methods::is(met_dt, "GRanges"))
   assertthat::assert_that(methods::is(anno_dt, "GRanges"))
@@ -103,19 +103,19 @@ create_region_object <- function(met_dt,
     doParallel::registerDoParallel(cl)
     result <- foreach::`%dopar%`(obj = foreach::foreach(i=1:N,.inorder = TRUE,.packages = "BSDMR",
                                                         .multicombine = TRUE, .maxcombine = 1000),
-                                 ex = {out <- .create_met_region(met_dt=met_dt,gen_ind=gen_ind,query_hits = query_hits,subj_hits = subj_hits, cov = cov,D=D,met=met,total=total, sd_thresh=sd_thresh,cpg_loc=cpg_loc,centre=centre,chrom=chrom,strand=strand,up_anno=up_anno,down_anno=down_anno,fmin=fmin,fmax=fmax, index = i)})
+                                 ex = {out <- .create_met_region(met_dt=met_dt,gen_ind=gen_ind,query_hits = query_hits,subj_hits = subj_hits, cov = cov,D=D,met=met,total=total,cpg_loc=cpg_loc,centre=centre,chrom=chrom,strand=strand,up_anno=up_anno,down_anno=down_anno,fmin=fmin,fmax=fmax, index = i)})
     # Stop parallel execution
     parallel::stopCluster(cl)
     doParallel::stopImplicitCluster()
   } else {
     result <- foreach::`%do%`(obj = foreach::foreach(i=1:N,.packages = "BSDMR",.inorder = TRUE,
                                                      .multicombine = TRUE, .maxcombine = 1000),
-                              ex = {out <- .create_met_region(met_dt=met_dt,gen_ind=gen_ind,query_hits = query_hits,subj_hits = subj_hits, cov = cov,D=D,met=met,total=total, sd_thresh=sd_thresh,cpg_loc=cpg_loc,centre=centre,chrom=chrom,strand=strand,up_anno=up_anno,down_anno=down_anno,fmin=fmin,fmax=fmax,index = i)})
+                              ex = {out <- .create_met_region(met_dt=met_dt,gen_ind=gen_ind,query_hits = query_hits,subj_hits = subj_hits, cov = cov,D=D,met=met,total=total,cpg_loc=cpg_loc,centre=centre,chrom=chrom,strand=strand,up_anno=up_anno,down_anno=down_anno,fmin=fmin,fmax=fmax,index = i)})
   }
   
   met_region = result
-
-
+  
+  
   return(structure(list(met = met_region, anno = anno_dt),
                    class = "region_object"))
 }

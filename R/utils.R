@@ -242,7 +242,7 @@ design_matrix.rbf <- function(obj,
     }
     
   }
-
+  
   #if no region meet the suitation then return NULL
   if(length(end)==0){
     return(NULL)
@@ -251,7 +251,7 @@ design_matrix.rbf <- function(obj,
     region <- data.frame(start=begin,end=end,anno_index=anno_index)
     return(region)
   }
- 
+  
 }
 
 .constructGRanges <- function(inputRegion,
@@ -293,13 +293,13 @@ design_matrix.rbf <- function(obj,
         #判断Partially deleted
         if((GenomicRanges::width(inputRegion[index])-GenomicRanges::width(result))>30){
           result <- GenomicRanges::GRanges(
-                  seqnames = "FAILED",
-                  ranges = IRanges::IRanges(start = 0,end = 0),
-                  strand = "-",
-                  id = "liftOver FAILED",
-                  center = NA,
-                  annotation = "Partially deleted in new: Sequence insufficiently intersects one chain"
-                )
+            seqnames = "FAILED",
+            ranges = IRanges::IRanges(start = 0,end = 0),
+            strand = "-",
+            id = "liftOver FAILED",
+            center = NA,
+            annotation = "Partially deleted in new: Sequence insufficiently intersects one chain"
+          )
         }
         return(result)
       }else{
@@ -336,7 +336,6 @@ design_matrix.rbf <- function(obj,
                                D,
                                met,
                                total,
-                               sd_thresh,
                                cpg_loc,
                                centre,
                                chrom,
@@ -350,57 +349,50 @@ design_matrix.rbf <- function(obj,
   cpg_sites = subj_hits[which(query_hits==index)]
   
   if(length(cpg_sites) > cov){
-    # If sd of the methylation level is above threshold
+    
+    # Locations of CpGs in the genome
+    region <- cpg_loc[cpg_sites]
+    # Middle location for region[index]
+    middle <- centre[gen_ind[which(gen_ind==index)]]
+    # Extract chromosome information
+    chrom_info <- chrom[gen_ind[which(gen_ind==index)]]
+    # Extract strand information, i.e. direction
+    strand_direction <- strand[gen_ind[which(gen_ind==index)]]
+    # Extract upstream information
+    upstream <- up_anno[gen_ind[which(gen_ind==index)]]
+    # Extract downstream information
+    downstream <- down_anno[gen_ind[which(gen_ind==index)]]
+    # Shift CpG locations relative to TSS
+    center_data  <- .do_centre_loc(
+      region = region,
+      centre = middle,
+      strand_direction = strand_direction
+    )
+    # In "-" strand the order of the locations should change
+    Order <- base::order(center_data)
+    res <- matrix(data = 0, nrow = length(cpg_sites), ncol = D)
+    # Store actual genomic coordinates of CpGs
+    rownames(res) <- paste(chrom_info,
+                           region[Order], sep = ":")
+    # Store normalized locations of CpGs
+    res[, 1] <- round(
+      .minmax_scaling(
+        data = center_data[Order],
+        xmin = upstream,
+        xmax = downstream,
+        fmin = fmin,
+        fmax = fmax
+      ),
+      10
+    )
+    # Store reads in the corresponding locations
     if (D == 2) {
-      obs_var <- stats::sd(met[cpg_sites])
-    } else {
-      obs_var <- stats::sd(met[cpg_sites] / total[cpg_sites])
-    }
-    if (obs_var > sd_thresh) {
-      # Locations of CpGs in the genome
-      region <- cpg_loc[cpg_sites]
-      # Middle location for region[index]
-      middle <- centre[gen_ind[which(gen_ind==index)]]
-      # Extract chromosome information
-      chrom_info <- chrom[gen_ind[which(gen_ind==index)]]
-      # Extract strand information, i.e. direction
-      strand_direction <- strand[gen_ind[which(gen_ind==index)]]
-      # Extract upstream information
-      upstream <- up_anno[gen_ind[which(gen_ind==index)]]
-      # Extract downstream information
-      downstream <- down_anno[gen_ind[which(gen_ind==index)]]
-      # Shift CpG locations relative to TSS
-      center_data  <- .do_centre_loc(
-        region = region,
-        centre = middle,
-        strand_direction = strand_direction
-      )
-      # In "-" strand the order of the locations should change
-      Order <- base::order(center_data)
-      res <- matrix(data = 0, nrow = length(cpg_sites), ncol = D)
-      # Store actual genomic coordinates of CpGs
-      rownames(res) <- paste(chrom_info,
-                                           region[Order], sep = ":")
-      # Store normalized locations of CpGs
-      res[, 1] <- round(
-        .minmax_scaling(
-          data = center_data[Order],
-          xmin = upstream,
-          xmax = downstream,
-          fmin = fmin,
-          fmax = fmax
-        ),
-        10
-      )
-      # Store reads in the corresponding locations
-      if (D == 2) {
-        res[, 2] <- met[cpg_sites][Order]
-      } else{
-        # Store total reads in the corresponding locations
-        res[, 2] <- total[cpg_sites][Order]
-        # Store methylated reads in the corresponding locations
-        res[, 3] <- met[cpg_sites][Order]
-      }
+      res[, 2] <- met[cpg_sites][Order]
+    } else{
+      # Store total reads in the corresponding locations
+      res[, 2] <- total[cpg_sites][Order]
+      # Store methylated reads in the corresponding locations
+      res[, 3] <- met[cpg_sites][Order]
     }
     return(res)
   }else{
