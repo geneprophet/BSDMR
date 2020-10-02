@@ -404,7 +404,8 @@ design_matrix.rbf <- function(obj,
     }
     return(res)
   }else{
-    return(NA)
+    res = NA
+    return(res)
   }
 }
 

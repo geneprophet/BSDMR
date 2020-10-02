@@ -57,7 +57,7 @@ create_region_object <- function(met_dt,
   assertthat::assert_that(methods::is(met_dt, "GRanges"))
   assertthat::assert_that(methods::is(anno_dt, "GRanges"))
   # Find overlaps between met and anno
-  overlaps <- GenomicRanges::findOverlaps(query = anno_dt, subject = met_dt, ignore.strand = T)
+  overlaps <- GenomicRanges::findOverlaps(query = anno_dt, subject = met_dt, ignore.strand = ignore_strand)
   query_hits <- S4Vectors::queryHits(overlaps)
   subj_hits  <- S4Vectors::subjectHits(overlaps)
   gen_ind    <- unique(query_hits)

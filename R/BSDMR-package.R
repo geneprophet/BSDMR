@@ -67,8 +67,6 @@ if (nzchar(chk) && chk == "TRUE") {
 # human_met <- read_methylation_report(file,min_coverage=4,type = "CG")
 # file <- system.file("extdata", "example_mouse_CpG_report.txt", package = "BSDMR")
 # mouse_met <- read_methylation_report(file,min_coverage=4,type = "CG")
-# file <- system.file("extdata", "example_human_annotation.txt", package = "BSDMR")
-# human_anno <- read_annotation(file)
 # ##read annotation file (customized region)
 # file <- system.file("extdata", "example_human_annotation.txt", package = "BSDMR")
 # human_anno <- read_annotation(file)
@@ -84,11 +82,11 @@ if (nzchar(chk) && chk == "TRUE") {
 # 
 # #step3. liftOver map the human_region to the annotated region of another species
 # filePath <- system.file("extdata", "hg38ToMm10.over.chain", package = "BSDMR")
-# targetGRanges <- change_genomic_coordinate(human_region,filePath,mouse_anno)
+# mouse_region <- change_genomic_coordinate(human_region,filePath,mouse_anno)
 # 
 # #step4. create region object as the input of modeling
-# human_obj <- create_region_object(human_met, human_anno)
-# mouse_obj <- create_region_object(mouse_met, targetGRanges)
+# human_obj <- create_region_object(human_met, human_region)
+# mouse_obj <- create_region_object(mouse_met, mouse_region)
 # 
 # #step5. infer profiles of reion object
 # human_basis_profile <- create_rbf_object(M = 8)
@@ -108,12 +106,12 @@ if (nzchar(chk) && chk == "TRUE") {
 #                                     basis = mouse_basis_mean, is_parallel = TRUE, vb_max_iter = 100)
 # 
 # #step6. computer the adjusted consine distance of profiles and measure the similarity
-# similarity <- adjusted_cosine_similarity(queryProfiles=human_fit_profiles,queryObj=human_obj,subjectProfiles=mouse_fit_profiles,subjectObj=mouse_obj)
+# similarity <- adjusted_cosine_similarity(queryProfiles=human_fit_profiles,subjectProfiles=mouse_fit_profiles)
 # 
 # #step7. visualization
-# which(similarity$similarity<0.2)
-# similarity[43,]
-# plot_infer_profiles(region = 43, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
-#                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[43]))
-# plot_infer_profiles(region = 4, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
-#                     obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[4]))
+# which(similarity<0.2)
+# similarity[447]
+# plot_infer_profiles(region = 447, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
+#                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[447]))
+# plot_infer_profiles(region = 447, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
+#                     obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[447]))
