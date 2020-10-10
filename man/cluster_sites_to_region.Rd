@@ -9,6 +9,7 @@ cluster_sites_to_region(
   annotation,
   min_sites_number = 10,
   max_distance_between_sites = 200,
+  ignore_strand = TRUE,
   is_parallel = TRUE,
   no_cores = NULL
 )
@@ -22,6 +23,8 @@ cluster_sites_to_region(
 
 \item{max_distance_between_sites}{the maxmal distance between C sites within a region.
 the unit of distance is unit and the default is 200}
+
+\item{ignore_strand}{Logical, whether or not to ignore strand information.}
 
 \item{is_parallel}{Logical, indicating if code should be run in parallel.}
 

@@ -201,9 +201,10 @@ design_matrix.rbf <- function(obj,
                                   annotation,
                                   index,
                                   min_sites_number,
-                                  max_distance_between_sites){
+                                  max_distance_between_sites,
+                                  ignore_strand){
   anno <- annotation[index]
-  hits <- GenomicRanges::findOverlaps(methylation,anno,ignore.strand=TRUE)
+  hits <- GenomicRanges::findOverlaps(methylation,anno,ignore.strand=ignore_strand)
   begin <- vector(mode = "double", length = 0)
   end <- vector(mode = "double", length = 0)
   anno_index <- vector(mode = "double", length = 0)
@@ -217,7 +218,7 @@ design_matrix.rbf <- function(obj,
       if((GenomicRanges::start(methylation[S4Vectors::queryHits(hits[i])])-GenomicRanges::start(methylation[S4Vectors::queryHits(hits[i-1])]))<max_distance_between_sites){
         count = count + 1
         print(count)
-        #finsh the iteration when reach the end of CoG_gr
+        #finsh the iteration when reach the end of CpG_gr
         if(count==length(hits)){
           e = GenomicRanges::start(methylation[S4Vectors::queryHits(hits[i])])
           begin <- c(begin,b)
