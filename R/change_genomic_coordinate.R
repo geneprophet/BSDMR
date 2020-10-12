@@ -8,6 +8,7 @@
 #'                   <http://hgdownload.soe.ucsc.edu/downloads.html#liftover>
 #' @param targetAnnotation the \code{GRanges} object to annotate the result of liftOver, a \code{GRanges} object.
 #'                         Generally, the targetAnnotation is a result of \code{read_annotation}.
+#'                         default value is null.
 #' @param is_parallel Logical, indicating if code should be run in parallel.
 #' @param no_cores if you have specify the is_parallel is ture ,you can specify the number of parallel cores
 #' 
@@ -24,7 +25,7 @@
 #' 
 change_genomic_coordinate <- function(inputRegion,
                                       chainFile,
-                                      targetAnnotation,
+                                      targetAnnotation = NULL,
                                       is_parallel = TRUE,
                                       no_cores = NULL){
   if(!methods::is(inputRegion,"GRanges")){
@@ -55,17 +56,22 @@ change_genomic_coordinate <- function(inputRegion,
                                 ex = {out <- .constructGRanges(inputRegion = inputRegion,out = over,index = i)})
     }
     
-    #把转换后的region注释到对应物种的基因组上
-    hits <- GenomicRanges::findOverlaps(result,targetAnnotation,ignore.strand=T)
-    
-    #把转换成功的region注释到targetAnnotation
-    for (j in 1:length(hits)) {
-      result[S4Vectors::queryHits(hits[j])]$id = targetAnnotation[S4Vectors::subjectHits(hits[j])]$id
-      result[S4Vectors::queryHits(hits[j])]$annotation = targetAnnotation[S4Vectors::subjectHits(hits[j])]$annotation
-    }
+    #TODO://当targetAnnotation为null时，跳过注释这一步
     
   })
-  
-  return(result)
+  if(is.null(targetAnnotation)){
+    return(result)
+  } else {
+    suppressWarnings({
+      #把转换后的region注释到对应物种的基因组上
+      hits <- GenomicRanges::findOverlaps(result,targetAnnotation,ignore.strand=T)
+      #把转换成功的region注释到targetAnnotation
+      for (j in 1:length(hits)) {
+        result[S4Vectors::queryHits(hits[j])]$id = targetAnnotation[S4Vectors::subjectHits(hits[j])]$id
+        result[S4Vectors::queryHits(hits[j])]$annotation = targetAnnotation[S4Vectors::subjectHits(hits[j])]$annotation
+      }
+    })
+    return(result)
+  }
 }
 

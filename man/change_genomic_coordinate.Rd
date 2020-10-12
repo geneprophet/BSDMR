@@ -7,7 +7,7 @@
 change_genomic_coordinate(
   inputRegion,
   chainFile,
-  targetAnnotation,
+  targetAnnotation = NULL,
   is_parallel = TRUE,
   no_cores = NULL
 )
@@ -22,7 +22,8 @@ then the chainFile must be "hg38ToMm10.over.chain".
   <http://hgdownload.soe.ucsc.edu/downloads.html#liftover>}
 
 \item{targetAnnotation}{the \code{GRanges} object to annotate the result of liftOver, a \code{GRanges} object.
-Generally, the targetAnnotation is a result of \code{read_annotation}.}
+Generally, the targetAnnotation is a result of \code{read_annotation}.
+default value is null.}
 
 \item{is_parallel}{Logical, indicating if code should be run in parallel.}
 
