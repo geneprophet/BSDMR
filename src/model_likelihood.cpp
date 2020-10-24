@@ -38,9 +38,11 @@ double bpr_log_likelihood(const arma::vec& w, const arma::mat& X,
     }else if (Phi[i] < 1e-15){ Phi[i] = 1e-15; }
     // Compute the log likelihood
     if (ncols == 3){ // If Binomial distributed data
-      ll += R::dbinom(X(i, 2), X(i, 1), Phi[i], true);
+      //ll += R::dbinom(X(i, 2), X(i, 1), Phi[i], true);
+      ll += R::dbinom(X(i, 3), X(i, 2), Phi[i], true);
     }else{           // If Bernoulli distributed data
-      ll += R::dbinom(X(i, 1), 1, Phi[i], true);
+      //ll += R::dbinom(X(i, 1), 1, Phi[i], true);
+      ll += R::dbinom(X(i, 2), 1, Phi[i], true);
     }
   }
   
