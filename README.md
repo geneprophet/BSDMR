@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 <!-- badges: end -->
 
 The goal of BSDMR is to find DMRs between species by high order
@@ -68,23 +68,23 @@ mouse_obj <- create_region_object(mouse_met, mouse_region)
 
 #step5. infer profiles of reion object
 human_basis_profile <- create_rbf_object(M = 8)
-human_fit_profiles <- infer_profiles_vb(X = human_obj$met, model = "binomial",
-                                        basis = human_basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+human_fit_profiles <- infer_profiles_vb(X = human_obj$met, basis = human_basis_profile, 
+                                        is_parallel = TRUE, vb_max_iter = 100)
 #> infering the methylation profiles by variational bayes....
 
 human_basis_mean <- create_rbf_object(M = 0)
-human_fit_mean <- infer_profiles_vb(X = human_obj$met, model = "binomial",
-                                    basis = human_basis_mean, is_parallel = TRUE, vb_max_iter = 100)
+human_fit_mean <- infer_profiles_vb(X = human_obj$met, basis = human_basis_mean,
+                                    is_parallel = TRUE, vb_max_iter = 100)
 #> infering the methylation profiles by variational bayes....
 
 mouse_basis_profile <- create_rbf_object(M = 8)
-mouse_fit_profiles <- infer_profiles_vb(X = mouse_obj$met, model = "binomial",
-                                        basis = mouse_basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+mouse_fit_profiles <- infer_profiles_vb(X = mouse_obj$met, basis = mouse_basis_profile, 
+                                        is_parallel = TRUE, vb_max_iter = 100)
 #> infering the methylation profiles by variational bayes....
 
 mouse_basis_mean <- create_rbf_object(M = 0)
-mouse_fit_mean <- infer_profiles_vb(X = mouse_obj$met, model = "binomial",
-                                    basis = mouse_basis_mean, is_parallel = TRUE, vb_max_iter = 100)
+mouse_fit_mean <- infer_profiles_vb(X = mouse_obj$met, basis = mouse_basis_mean, 
+                                    is_parallel = TRUE, vb_max_iter = 100)
 #> infering the methylation profiles by variational bayes....
 
 #step6. computer the adjusted consine distance of profiles and measure the similarity

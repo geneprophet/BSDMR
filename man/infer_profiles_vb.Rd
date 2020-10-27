@@ -8,7 +8,6 @@
 \usage{
 infer_profiles_vb(
   X,
-  model = NULL,
   basis = NULL,
   H = NULL,
   w = NULL,
@@ -29,8 +28,6 @@ infer_profiles_vb(
 first column contains the input observations x (i.e. CpG locations). If
 "binomial" model then C=3, and 2nd and 3rd columns contain total number of
 trials and number of successes respectively.}
-
-\item{model}{Observation model name as character string. It can be 'binomial'.}
 
 \item{basis}{A 'basis' object. E.g. see \code{\link{create_rbf_object}}. If NULL,
 will an RBF object will be created.}
@@ -90,8 +87,8 @@ General purpose functions for inferring latent profiles for
 # Example of inferring parameters for synthetic data using 8 RBFs
 \dontrun{
 basis_profile <- create_rbf_object(M=8)
-human_fit_profiles <- infer_profiles_vb(X = human_obj$met, model = "binomial",
-   basis = basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+human_fit_profiles <- infer_profiles_vb(X = human_obj$met, basis = basis_profile,
+                                        is_parallel = TRUE, vb_max_iter = 100)
 }
 
 }

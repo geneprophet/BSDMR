@@ -16,7 +16,6 @@
 #'   trials and number of successes respectively.
 #' @param H Optional, design matrix of the input data X. If NULL, H will be
 #'   computed inside the function.
-#' @param model Observation model name as character string. It can be 'binomial'.
 #' @param basis A 'basis' object. E.g. see \code{\link{create_rbf_object}}. If NULL,
 #'   will an RBF object will be created.
 #' @param w A vector of initial parameters (i.e. coefficients of the basis
@@ -59,19 +58,21 @@
 #' # Example of inferring parameters for synthetic data using 8 RBFs
 #' \dontrun{
 #' basis_profile <- create_rbf_object(M=8)
-#' human_fit_profiles <- infer_profiles_vb(X = human_obj$met, model = "binomial",
-#'    basis = basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+#' human_fit_profiles <- infer_profiles_vb(X = human_obj$met, basis = basis_profile,
+#'                                         is_parallel = TRUE, vb_max_iter = 100)
 #' }
 #'
 #' @export
 #' 
-infer_profiles_vb <- function(X, model = NULL, basis = NULL, H = NULL, w = NULL,
+infer_profiles_vb <- function(X, basis = NULL, H = NULL, w = NULL,
                               alpha_0 = 0.5, beta_0 = 0.1,
                               vb_max_iter = 100, epsilon_conv = 1e-5,
                               is_parallel = TRUE, no_cores = NULL,
                               is_verbose = FALSE, ...){
   message("infering the methylation profiles by variational bayes....")
-  if (is.null(model)) { stop("Observation model not defined!") }
+  
+  #define observation model 
+  model = "binomial"
   # Create RBF basis object by default
   if (is.null(basis)) {
     warning("Basis object not defined. Using as default M = 8 RBFs.\n")
@@ -250,8 +251,9 @@ infer_profiles_vb <- function(X, model = NULL, basis = NULL, H = NULL, w = NULL,
     }
     
     # NLL fit feature
-    nll_feat <- bpr_log_likelihood(w = m, X = X, H = H_tmp, lambda = .1,
-                                   is_nll = TRUE)
+    #nll_feat <- bpr_log_likelihood(w = m, X = X, H = H_tmp, lambda = .1,
+    #                               is_nll = TRUE)
+    nll_feat <- NA
     # RMSE fit feature
     f_pred <- c(pnorm(H_tmp %*% m))
     if (NCOL(X) == 3) { f_true <- X[, 3] / X[, 2] } else{f_true <- X[, 2] }

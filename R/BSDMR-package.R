@@ -90,20 +90,20 @@ if (nzchar(chk) && chk == "TRUE") {
 # 
 # #step5. infer profiles of reion object
 # human_basis_profile <- create_rbf_object(M = 8)
-# human_fit_profiles <- infer_profiles_vb(X = human_obj$met, model = "binomial",
-#                                         basis = human_basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+# human_fit_profiles <- infer_profiles_vb(X = human_obj$met, basis = human_basis_profile,
+#                                         is_parallel = TRUE, vb_max_iter = 100)
 # 
 # human_basis_mean <- create_rbf_object(M = 0)
-# human_fit_mean <- infer_profiles_vb(X = human_obj$met, model = "binomial",
-#                                     basis = human_basis_mean, is_parallel = TRUE, vb_max_iter = 100)
+# human_fit_mean <- infer_profiles_vb(X = human_obj$met, basis = human_basis_mean, 
+#                                     is_parallel = TRUE, vb_max_iter = 100)
 # 
 # mouse_basis_profile <- create_rbf_object(M = 8)
-# mouse_fit_profiles <- infer_profiles_vb(X = mouse_obj$met, model = "binomial",
-#                                         basis = mouse_basis_profile, is_parallel = TRUE, vb_max_iter = 100)
+# mouse_fit_profiles <- infer_profiles_vb(X = mouse_obj$met, basis = mouse_basis_profile,
+#                                         is_parallel = TRUE, vb_max_iter = 100)
 # 
 # mouse_basis_mean <- create_rbf_object(M = 0)
-# mouse_fit_mean <- infer_profiles_vb(X = mouse_obj$met, model = "binomial",
-#                                     basis = mouse_basis_mean, is_parallel = TRUE, vb_max_iter = 100)
+# mouse_fit_mean <- infer_profiles_vb(X = mouse_obj$met, basis = mouse_basis_mean, 
+#                                     is_parallel = TRUE, vb_max_iter = 100)
 # 
 # #step6. computer the adjusted consine distance of profiles and measure the similarity
 # similarity <- adjusted_cosine_similarity(queryProfiles=human_fit_profiles,subjectProfiles=mouse_fit_profiles)
