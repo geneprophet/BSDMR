@@ -46,9 +46,7 @@
 #'   profiles using mean-field variational inference are explained here:
 #'   \url{http://rpubs.com/cakapourani/} . More specifically: \itemize{\item{For
 #'   Binomial/Bernoulli observation model check:
-#'   \url{http://rpubs.com/cakapourani/variational-bayes-bpr}} \item{For
-#'   Gaussian observation model check:
-#'   \url{http://rpubs.com/cakapourani/variational-bayes-lr}}}
+#'   \url{http://rpubs.com/cakapourani/variational-bayes-bpr}} 
 #'
 #' @author Hongen Kang  \email{geneprophet@163.com}
 #'
