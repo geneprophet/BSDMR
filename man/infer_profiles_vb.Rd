@@ -73,14 +73,8 @@ General purpose functions for inferring latent profiles for
   different observation models using Variational Bayes (VB). Current
   observation models are: 'bernoulli', 'binomial'.
 }
-\section{Details}{
- The modelling and mathematical details for inferring
-  profiles using mean-field variational inference are explained here:
-  \url{http://rpubs.com/cakapourani/} . More specifically: \itemize{\item{For
-  Binomial/Bernoulli observation model check:
-  \url{http://rpubs.com/cakapourani/variational-bayes-bpr}} \item{For
-  Gaussian observation model check:
-  \url{http://rpubs.com/cakapourani/variational-bayes-lr}}}
+\section{}{
+NA
 }
 
 \examples{
