@@ -1,4 +1,6 @@
 BSDMR.Rproj
+*.png
+*.tiff
 .Rhistory
 .Rproj.user
 .Rhistory

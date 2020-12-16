@@ -292,7 +292,7 @@ design_matrix.rbf <- function(obj,
           annotation = "Successed"
         )
         #判断Partially deleted
-        if(abs(GenomicRanges::width(inputRegion[index])-GenomicRanges::width(result))>3000){
+        if(abs(GenomicRanges::width(inputRegion[index])-GenomicRanges::width(result))>30){
           result <- GenomicRanges::GRanges(
             seqnames = "FAILED",
             ranges = IRanges::IRanges(start = 0,end = 0),
@@ -312,7 +312,7 @@ design_matrix.rbf <- function(obj,
           center = round((tail(BiocGenerics::as.vector(GenomicRanges::end(out[[index]])),1) + head(BiocGenerics::as.vector(GenomicRanges::start(out[[index]])),1))/2),
           annotation = "Successed"
         )
-        if(abs(GenomicRanges::width(inputRegion[index])-GenomicRanges::width(result))>3000){
+        if(abs(GenomicRanges::width(inputRegion[index])-GenomicRanges::width(result))>30){
           result <- GenomicRanges::GRanges(
             seqnames = "FAILED",
             ranges = IRanges::IRanges(start = 0,end = 0),

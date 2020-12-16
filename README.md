@@ -34,18 +34,18 @@ library(BSDMR)
 
 #step1. read files
 ##read methylation report (the result of bismark)
-file <- system.file("extdata", "example_human_CpG_report.txt", package = "BSDMR")
+file <- system.file("extdata", "example_human_chr22_CpG_report.txt", package = "BSDMR")
 human_met <- read_methylation_report(file,min_coverage=4,type = "CG")
 #> reading methylation report file ...
-file <- system.file("extdata", "example_mouse_CpG_report.txt", package = "BSDMR")
+file <- system.file("extdata", "example_mouse_chr15_CpG_report.txt", package = "BSDMR")
 mouse_met <- read_methylation_report(file,min_coverage=4,type = "CG")
 #> reading methylation report file ...
 
 ##read annotation file (customized region)
-file <- system.file("extdata", "example_human_annotation.txt", package = "BSDMR")
+file <- system.file("extdata", "example_human_chr22_annotation.txt", package = "BSDMR")
 human_anno <- read_annotation(file)
 #> reading annotation file...
-file <- system.file("extdata", "example_mouse_annotation.txt", package = "BSDMR")
+file <- system.file("extdata", "example_mouse_chr15_annotation.txt", package = "BSDMR")
 mouse_anno <- read_annotation(file)
 #> reading annotation file...
 
@@ -91,19 +91,18 @@ mouse_fit_mean <- infer_profiles_vb(X = mouse_obj$met, basis = mouse_basis_mean,
 similarity <- adjusted_cosine_similarity(queryProfiles = human_fit_profiles,subjectProfiles = mouse_fit_profiles)
 
 #step7. visualization
-which(similarity<0.1)
-#> [1] 1645 3186 7135
-similarity[3186]
-#> [1] 0.04402974
-plot_infer_profiles(region = 3186, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
-                    obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[3186]))
+which(similarity>0.9)
+#> [1] 154 164 430 512 522 560 728
+i=164
+plot_infer_profiles(region = i, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
+                    obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[i]))
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
 
 ``` r
-plot_infer_profiles(region = 3186, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
-                    obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[3186]))
+plot_infer_profiles(region = i, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
+                    obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[i]))
 ```
 
 <img src="man/figures/README-example-2.png" width="100%" />

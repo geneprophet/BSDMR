@@ -67,7 +67,6 @@ plot_infer_profiles <- function(region = 1, obj_prof, obj_mean = NULL,
   x_axis = as.vector(GenomicRanges::seqnames(obs$anno[region]))
   y_axis = "methylation level"
   #@param x_labels x axis ticks labels
-  #x_labels = c("Upstream", "", "Centre", "", "Downstream")
   x_labels = c(GenomicRanges::start(obs$anno[region]),"",obs$anno[region]$center,"",GenomicRanges::end(obs$anno[region]))
   obs = obs$met
   # For RMD CHECK to pass without NOTEs
@@ -143,6 +142,7 @@ plot_infer_profiles <- function(region = 1, obj_prof, obj_mean = NULL,
   }
   p <- p + scale_x_continuous(limits = c(-1, 1), labels = x_labels) +
     labs(title = title, x = x_axis, y = y_axis) +
+    scale_y_continuous(limits = c(0,1)) + 
     .gg_theme()
   return(p)
 }
