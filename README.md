@@ -9,8 +9,8 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 <!-- badges: end -->
 
-The goal of BSDMR is to find DMRs between species by high order
-methylation profile.
+The goal of BSDMR is to find DMRs or IMRs by high order methylation
+profiles between species.
 
 ## Installation
 
