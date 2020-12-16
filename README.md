@@ -42,10 +42,10 @@ mouse_met <- read_methylation_report(file,min_coverage=4,type = "CG")
 #> reading methylation report file ...
 
 ##read annotation file (customized region)
-file <- system.file("extdata", "example_human_chr22_annotation.txt", package = "BSDMR")
+file <- system.file("extdata", "human_chr22_annotation.txt", package = "BSDMR")
 human_anno <- read_annotation(file)
 #> reading annotation file...
-file <- system.file("extdata", "example_mouse_chr15_annotation.txt", package = "BSDMR")
+file <- system.file("extdata", "mouse_chr15_annotation.txt", package = "BSDMR")
 mouse_anno <- read_annotation(file)
 #> reading annotation file...
 
@@ -92,8 +92,8 @@ similarity <- adjusted_cosine_similarity(queryProfiles = human_fit_profiles,subj
 
 #step7. visualization
 which(similarity>0.9)
-#> [1] 154 164 430 512 522 560 728
-i=164
+#> [1] 160 170 442 525 535 573 744
+i=160
 plot_infer_profiles(region = i, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[i]))
 ```
