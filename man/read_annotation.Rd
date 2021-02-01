@@ -24,10 +24,12 @@ The GRanges object contains three additional metadata columns:
 }
 \examples{
 # Obtain the path to files
-file <- system.file("extdata", "example_human_annotation.txt", package = "BSDMR")
+\dontrun{
+#' file <- system.file("extdata", "human_chr22_annotation.txt", package = "BSDMR")
 human_anno <- read_annotation(file)
-file <- system.file("extdata", "example_mouse_annotation.txt", package = "BSDMR")
+file <- system.file("extdata", "mouse_chr15_annotation.txt", package = "BSDMR")
 mouse_anno <- read_annotation(file)
+}
 
 }
 \author{

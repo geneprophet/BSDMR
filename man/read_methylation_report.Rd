@@ -30,10 +30,12 @@ The GRanges object contains three additional metadata columns:
 }
 \examples{
 # Obtain the path to files
-file <- system.file("extdata", "example_human_CpG_report.txt", package = "BSDMR")
+\dontrun{
+#' file <- system.file("extdata", "example_human_chr22_CpG_report.txt", package = "BSDMR")
 human_met <- read_methylation_report(file,min_coverage=4)
-file <- system.file("extdata", "example_mouse_CpG_report.txt", package = "BSDMR")
+file <- system.file("extdata", "example_mouse_chr15_CpG_report.txt", package = "BSDMR")
 mouse_met <- read_methylation_report(file,min_coverage=4)
+}
 
 }
 \author{

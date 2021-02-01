@@ -17,7 +17,7 @@
 # mouse2[query[index]]
 # 取前60个region，30个模拟DMR，30个模拟IMR
 # 
-#############simulated data
+# #############simulated data
 # example_human_chr22_CpG_report <- read_delim("inst/extdata/example_human_chr22_CpG_report.txt",
 #                                 "\t", escape_double = FALSE, col_names = FALSE,
 #                                   trim_ws = TRUE)
@@ -49,17 +49,22 @@
 # m_subj_hits  <- S4Vectors::subjectHits(mouse_overlaps)
 # table(m_subj_hits)
 
-# #simulated 1
-# human <- data.frame(seqnames=as.vector(seqnames(human_met[h_query_hits])),site=start(human_met[h_query_hits]),methylated = round(rnorm(NROW(human_met[h_query_hits]),mean = 2,sd=1)), unmethylated = round(rnorm(NROW(human_met[h_query_hits]),mean = 30,sd=2)))
+# # #simulated 1
+# human <- data.frame(seqnames=as.vector(seqnames(human_met[h_query_hits])),site=start(human_met[h_query_hits]),methylated = round(rnorm(NROW(human_met[h_query_hits]),mean = 30,sd=1)), unmethylated = round(rnorm(NROW(human_met[h_query_hits]),mean = 2,sd=2)))
 # mouse <- data.frame(seqnames=as.vector(seqnames(mouse_met[m_query_hits])),site=start(mouse_met[m_query_hits]),methylated = round(rnorm(NROW(mouse_met[m_query_hits]),mean = 30,sd=1)), unmethylated = round(rnorm(NROW(mouse_met[m_query_hits]),mean = 2,sd=2)))
 # names(human)[names(human) == "site"] <- 'X2'
 # names(mouse)[names(mouse) == "site"] <- 'X2'
 # human_merage <- merge(human,example_human_chr22_CpG_report,all=TRUE)
 # mouse_merage <- merge(mouse,example_mouse_chr15_CpG_report,all=TRUE)
 # mouse_merage[which(mouse_merage$unmethylated<0),]$unmethylated = 0
-# human_merage[which(human_merage$methylated<0),]$methylated = 0
-# write.table(human_merage,file = '/R/human_merge.txt')
-# write.table(mouse_merage,file = '/R/mouse_merge.txt')
+# human_merage[which(human_merage$unmethylated<0),]$unmethylated = 0
+# write.table(human_merage,file = '../human_merge.txt',row.names = F,col.names = F,sep = "\t")
+# write.table(mouse_merage,file = '../mouse_merge.txt',row.names = F,col.names = F,sep = "\t")
+# # sed -i 's/"//g' human_merge.txt
+# # sed -i 's/"//g' mouse_merge.txt
+# # awk -F "\t" '{if($3=="NA"){print $5FS$1FS$6FS$7FS$8FS$9FS$10} else {print $5FS$1FS$6FS$3FS$4FS$9FS$10}}' human_merge.txt > human_simulated_1.txt &
+# # awk -F "\t" '{if($3=="NA"){print $5FS$1FS$6FS$7FS$8FS$9FS$10} else {print $5FS$1FS$6FS$3FS$4FS$9FS$10}}' mouse_merge.txt > mouse_simulated_1.txt &
+
 #
 # #simulated 2
 # human <- data.frame(seqnames=as.vector(seqnames(human_met[h_query_hits])),site=start(human_met[h_query_hits]),methylated = round(rnorm(NROW(human_met[h_query_hits]),mean = 30, sd=1)), unmethylated = round(rnorm(NROW(human_met[h_query_hits]),mean = 2,sd=2)))
@@ -70,8 +75,15 @@
 # mouse_merage <- merge(mouse,example_mouse_chr15_CpG_report,all=TRUE)
 # mouse_merage[which(mouse_merage$methylated<0),]$methylated = 0
 # human_merage[which(human_merage$unmethylated<0),]$unmethylated = 0
-# write.table(human_merage,file = '/R/human_merge.txt')
-# write.table(mouse_merage,file = '/R/mouse_merge.txt')
+# write.table(human_merage,file = '../human_merge.txt',row.names = F,col.names = F,sep = "\t")
+# write.table(mouse_merage,file = '../mouse_merge.txt',row.names = F,col.names = F,sep = "\t")
+# # sed -i 's/"//g' human_merge.txt
+# # sed -i 's/"//g' mouse_merge.txt
+# # awk -F "\t" '{if($3=="NA"){print $5FS$1FS$6FS$7FS$8FS$9FS$10} else {print $5FS$1FS$6FS$3FS$4FS$9FS$10}}' human_merge.txt > human_simulated_2.txt &
+# # awk -F "\t" '{if($3=="NA"){print $5FS$1FS$6FS$7FS$8FS$9FS$10} else {print $5FS$1FS$6FS$3FS$4FS$9FS$10}}' mouse_merge.txt > mouse_simulated_2.txt &
+
+
+
 
 # #simulated 3
 # human <- data.frame(seqnames = character(),site= integer(),methylated=numeric(),unmethylated=numeric())
@@ -90,27 +102,13 @@
 # names(mouse)[names(mouse) == "site"] <- 'X2'
 # human_merage <- merge(human,example_human_chr22_CpG_report,all=TRUE)
 # mouse_merage <- merge(mouse,example_mouse_chr15_CpG_report,all=TRUE)
-# write.table(human_merage,file = '/R/human_merge.txt')
-# write.table(mouse_merage,file = '/R/mouse_merge.txt')
-
-# #####后续linux代码处理
-# #
+# write.table(mouse_merage,file = '../mouse_merge.txt',row.names = F,col.names = F,sep = "\t")
 # # sed -i 's/"//g' human_merge.txt
 # # sed -i 's/"//g' mouse_merge.txt
-# # awk -F " " '{if($3=="NA"){print $6FS$2FS$7FS$8FS$9FS$10FS$11} else {print $6FS$2FS$7FS$4FS$5FS$10FS$11}}' human_merge.txt > human_simulated_1.txt &
-# # awk -F " " '{if($3=="NA"){print $6FS$2FS$7FS$8FS$9FS$10FS$11} else {print $6FS$2FS$7FS$4FS$5FS$10FS$11}}' mouse_merge.txt > mouse_simulated_1.txt &
-# # sed -i 's/ /\t/g' mouse_simulated_1.txt
-# # sed -i 's/ /\t/g' human_simulated_1.txt
-# # awk -F " " '{if($3=="NA"){print $6FS$2FS$7FS$8FS$9FS$10FS$11} else {print $6FS$2FS$7FS$4FS$5FS$10FS$11}}' human_merge.txt > human_simulated_2.txt &
-# # awk -F " " '{if($3=="NA"){print $6FS$2FS$7FS$8FS$9FS$10FS$11} else {print $6FS$2FS$7FS$4FS$5FS$10FS$11}}' mouse_merge.txt > mouse_simulated_2.txt &
-# # sed -i 's/ /\t/g' mouse_simulated_2.txt
-# # sed -i 's/ /\t/g' human_simulated_2.txt
-# # awk -F " " '{if($3=="NA"){print $6FS$2FS$7FS$8FS$9FS$10FS$11} else {print $6FS$2FS$7FS$4FS$5FS$10FS$11}}' human_merge.txt > human_simulated_3.txt &
-# # awk -F " " '{if($3=="NA"){print $6FS$2FS$7FS$8FS$9FS$10FS$11} else {print $6FS$2FS$7FS$4FS$5FS$10FS$11}}' mouse_merge.txt > mouse_simulated_3.txt &
-# # sed -i 's/ /\t/g' mouse_simulated_3.txt
-# # sed -i 's/ /\t/g' human_simulated_3.txt
+# # awk -F "\t" '{if($3=="NA"){print $5FS$1FS$6FS$7FS$8FS$9FS$10} else {print $5FS$1FS$6FS$3FS$4FS$9FS$10}}' human_merge.txt > human_simulated_3.txt &
+# # awk -F "\t" '{if($3=="NA"){print $5FS$1FS$6FS$7FS$8FS$9FS$10} else {print $5FS$1FS$6FS$3FS$4FS$9FS$10}}' mouse_merge.txt > mouse_simulated_3.txt &
 #
-# 
+# #
 # #step1. read files
 # file <- system.file("extdata", "human_simulated_2.txt", package = "BSDMR")
 # human_met <- read_methylation_report(file,min_coverage=10,type = "CG")
@@ -122,18 +120,18 @@
 # file <- system.file("extdata", "mouse_chr15_annotation.txt", package = "BSDMR")
 # mouse_anno <- read_annotation(file)
 # 
-# # #step2. cluster_sites_to_region
+# #step2. cluster_sites_to_region
 # # human_region <- cluster_sites_to_region(methylation = human_met,
 # #                                         annotation = human_anno,
 # #                                         min_sites_number = 10,
 # #                                         max_distance_between_sites = 100,
 # #                                         is_parallel = TRUE)
-# # 
+# #
 # # #step3. liftOver map the human_region to the annotated region of another species
 # # filePath <- system.file("extdata", "hg38ToMm10.over.chain", package = "BSDMR")
 # # mouse_region <- change_genomic_coordinate(human_region,filePath,mouse_anno)
 # 
-# # or verse
+# # # or verse
 # mouse_region <- cluster_sites_to_region(methylation = mouse_met,
 #                                         annotation = mouse_anno,
 #                                         min_sites_number = 10,
@@ -165,9 +163,9 @@
 # 
 # #step6. computer the adjusted consine distance of profiles and measure the similarity
 # similarity <- adjusted_cosine_similarity(queryProfiles=human_fit_profiles,subjectProfiles=mouse_fit_profiles)
-# which(similarity<0.2)
+# which(similarity>0.9)
 # length(similarity[which(!is.na(similarity))])
-# i=15
+# i=23
 # plot_infer_profiles(region = i, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
 #                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[i]))
 # plot_infer_profiles(region = i, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
@@ -190,9 +188,14 @@
 # #查看mouse_reion中成功liftOver中转换成功的区域有多少
 # length(which(mouse_region$id!="liftOver FAILED"))
 # #查看有多少DMR被找出来了
-# length(which(similarity<0.2))
+# length(which(similarity>0.9))
 # #查看最终多少DMR是真的DMR
-# overlaps3 <- GenomicRanges::findOverlaps(query = mouse_region[which(similarity<0.2)], subject = mouse_region_60, ignore.strand = T)
-# overlaps4 <- GenomicRanges::findOverlaps(query = human_region[which(similarity<0.2)], subject = human_region_60, ignore.strand = T)
-# length(unique(subjectHits(overlaps3)))
-# length(unique(subjectHits(overlaps4)))
+# overlaps3 <- GenomicRanges::findOverlaps(query = mouse_region[which(similarity>0.9)], subject = mouse_region_60, ignore.strand = T)
+# overlaps4 <- GenomicRanges::findOverlaps(query = human_region[which(similarity>0.9)], subject = human_region_60, ignore.strand = T)
+# #length(unique(subjectHits(overlaps3)))
+# #length(unique(subjectHits(overlaps4)))
+# length(subjectHits(overlaps3))
+# length(subjectHits(overlaps4))
+# 
+
+

@@ -25,10 +25,12 @@
 #'
 #' @examples
 #' # Obtain the path to files
-#' file <- system.file("extdata", "example_human_CpG_report.txt", package = "BSDMR")
+#' \dontrun{
+#' #' file <- system.file("extdata", "example_human_chr22_CpG_report.txt", package = "BSDMR")
 #' human_met <- read_methylation_report(file,min_coverage=4)
-#' file <- system.file("extdata", "example_mouse_CpG_report.txt", package = "BSDMR")
+#' file <- system.file("extdata", "example_mouse_chr15_CpG_report.txt", package = "BSDMR")
 #' mouse_met <- read_methylation_report(file,min_coverage=4)
+#' }
 #' 
 read_methylation_report <- function(file,
                                     min_coverage = 4,
@@ -76,10 +78,12 @@ read_methylation_report <- function(file,
 #'
 #' @examples
 #' # Obtain the path to files
-#' file <- system.file("extdata", "example_human_annotation.txt", package = "BSDMR")
+#' \dontrun{
+#' #' file <- system.file("extdata", "human_chr22_annotation.txt", package = "BSDMR")
 #' human_anno <- read_annotation(file)
-#' file <- system.file("extdata", "example_mouse_annotation.txt", package = "BSDMR")
+#' file <- system.file("extdata", "mouse_chr15_annotation.txt", package = "BSDMR")
 #' mouse_anno <- read_annotation(file)
+#' }
 #' 
 read_annotation <- function(file){
   message("reading annotation file...")
