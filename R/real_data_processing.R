@@ -28,29 +28,29 @@
 
 
 #   load('../liver3k.Rdata')
-#   ############长度统计
-  a=width(human_region[which(similarity<0.2)])
-  species = rep("Human DMR",NROW(a))
-  a = data.frame(width=a,species=species)
-  b=width(mouse_region[which(similarity<0.2)])
-  species = rep("Mouse DMR",NROW(b))
-  b = data.frame(width=b,species = species)
-  c=width(human_region[which(similarity>0.9)])
-  species = rep("Human CMR",NROW(c))
-  c = data.frame(width=c,species=species)
-  d=width(mouse_region[which(similarity>0.9)])
-  species = rep("Mouse CMR",NROW(d))
-  d = data.frame(width=d,species = species)
-  e = rbind(a,b,c,d)
-
-  ggplot(e, aes(x = factor(species), y = width, fill = factor(species))) +
-    geom_boxplot(notch = TRUE,outlier.colour = NA) +
-    scale_fill_brewer(palette = "Pastel2") +
-    xlab(label = "Liver") +
-    ylab(label = "Region Width") +
-    labs(fill = "Categories") + 
-    scale_y_continuous(limits = c(0,2000))
-
+# #   ############长度统计
+#   a=width(human_region[which(similarity<0.2)])
+#   species = rep("Human DMR",NROW(a))
+#   a = data.frame(width=a,species=species)
+#   b=width(mouse_region[which(similarity<0.2)])
+#   species = rep("Mouse DMR",NROW(b))
+#   b = data.frame(width=b,species = species)
+#   c=width(human_region[which(similarity>0.9)])
+#   species = rep("Human CMR",NROW(c))
+#   c = data.frame(width=c,species=species)
+#   d=width(mouse_region[which(similarity>0.9)])
+#   species = rep("Mouse CMR",NROW(d))
+#   d = data.frame(width=d,species = species)
+#   e = rbind(a,b,c,d)
+# 
+#   ggplot(e, aes(x = factor(species), y = width, fill = factor(species))) +
+#     geom_boxplot(notch = TRUE,outlier.colour = NA) +
+#     scale_fill_brewer(palette = "Pastel2") +
+#     xlab(label = "Liver") +
+#     ylab(label = "Region Width") +
+#     labs(fill = "Categories") + 
+#     scale_y_continuous(limits = c(0,2000))
+# 
 
 # if(F){
 #   # #ChipSeeker Annotation
