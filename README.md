@@ -7,6 +7,8 @@
 
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/geneprophet/BSDMR?branch=master&svg=true)](https://ci.appveyor.com/project/geneprophet/BSDMR)
 <!-- badges: end -->
 
 The goal of BSDMR is to find DMRs or IMRs by high order methylation
@@ -92,7 +94,8 @@ similarity <- adjusted_cosine_similarity(queryProfiles = human_fit_profiles,subj
 
 #step7. visualization
 which(similarity>0.9)
-#> [1] 160 170 442 525 535 573 744
+#>  [1] 160 170 419 439 442 483 525 535 565 573 577 644 651 679 744 771 801 831 838
+#> [20] 873 971 989
 i=160
 plot_infer_profiles(region = i, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[i]))

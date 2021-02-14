@@ -110,9 +110,9 @@
 #
 # #
 # #step1. read files
-# file <- system.file("extdata", "human_simulated_2.txt", package = "BSDMR")
+# file <- system.file("extdata", "human_simulated_1.txt", package = "BSDMR")
 # human_met <- read_methylation_report(file,min_coverage=10,type = "CG")
-# file <- system.file("extdata", "mouse_simulated_2.txt", package = "BSDMR")
+# file <- system.file("extdata", "mouse_simulated_1.txt", package = "BSDMR")
 # mouse_met <- read_methylation_report(file,min_coverage=10,type = "CG")
 # ##read annotation file (customized region)
 # file <- system.file("extdata", "human_chr22_annotation.txt", package = "BSDMR")
@@ -121,17 +121,7 @@
 # mouse_anno <- read_annotation(file)
 # 
 # #step2. cluster_sites_to_region
-# # human_region <- cluster_sites_to_region(methylation = human_met,
-# #                                         annotation = human_anno,
-# #                                         min_sites_number = 10,
-# #                                         max_distance_between_sites = 100,
-# #                                         is_parallel = TRUE)
-# #
-# # #step3. liftOver map the human_region to the annotated region of another species
-# # filePath <- system.file("extdata", "hg38ToMm10.over.chain", package = "BSDMR")
-# # mouse_region <- change_genomic_coordinate(human_region,filePath,mouse_anno)
 # 
-# # # or verse
 # mouse_region <- cluster_sites_to_region(methylation = mouse_met,
 #                                         annotation = mouse_anno,
 #                                         min_sites_number = 10,
@@ -165,12 +155,12 @@
 # similarity <- adjusted_cosine_similarity(queryProfiles=human_fit_profiles,subjectProfiles=mouse_fit_profiles)
 # which(similarity>0.9)
 # length(similarity[which(!is.na(similarity))])
-# i=23
+# i=15
 # plot_infer_profiles(region = i, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
 #                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[i]))
 # plot_infer_profiles(region = i, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
 #                     obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[i]))
-# 
+
 # library(readr)
 # selected_human_60_CpG_islands <- read_delim("inst/extdata/selected_human_60_CpG_islands.txt",
 #             "\t", escape_double = FALSE, col_names = FALSE,trim_ws = TRUE)
