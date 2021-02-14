@@ -11,7 +11,7 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 status](https://ci.appveyor.com/api/projects/status/github/geneprophet/BSDMR?branch=master&svg=true)](https://ci.appveyor.com/project/geneprophet/BSDMR)
 <!-- badges: end -->
 
-The goal of BSDMR is to find DMRs or IMRs by high order methylation
+The goal of BSDMR is to find DMRs or CMRs by high order methylation
 profiles between species.
 
 ## Installation
