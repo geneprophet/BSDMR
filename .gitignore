@@ -1,6 +1,7 @@
 BSDMR.Rproj
 *.png
 *.tiff
+*.DS_Store
 .Rhistory
 .Rproj.user
 .Rhistory

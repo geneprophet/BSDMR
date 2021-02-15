@@ -44,8 +44,6 @@
 #'
 #' @section Details: The modelling and mathematical details for inferring
 #'   profiles using mean-field variational inference are explained here:
-#'   \url{http://rpubs.com/cakapourani} . More specifically: \itemize{\item{For
-#'   Binomial/Bernoulli observation model check:
 #'   \url{http://rpubs.com/cakapourani/variational-bayes-bpr}
 #'
 #' @author Hongen Kang  \email{geneprophet@163.com}
