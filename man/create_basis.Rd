@@ -36,8 +36,8 @@ A basis object of class 'rbf'.
 }
 \description{
 These functions create different basis objects, which can be
-  used as input to complex functions in order to perform computations
-  depending on the class of the basis function.
+used as input to complex functions in order to perform computations
+depending on the class of the basis function.
 }
 \examples{
 human_basis_profile <- create_rbf_object(M = 8)

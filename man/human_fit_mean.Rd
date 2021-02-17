@@ -6,15 +6,15 @@
 \title{a example out of \code{infer_profiles_vb }}
 \format{
 An object of class \code{infer_profiles_vb_}"obs_model" with the
-  following elements: \itemize{ \item{ \code{W}: An Nx(M+1) matrix with the
-  optimized parameter values. Each row of the matrix corresponds to each
-  element of the list X; if X is a matrix, then N = 1. The columns are of the
-  same length as the parameter vector w (i.e. number of basis functions). }
-  \item{ \code{W_Sigma}: A list with covariance matrices for each element row
-  in W.} \item{ \code{basis}: The basis object. } \item{\code{nll_feat}: NLL
-  fit feature.} \item{\code{rmse_feat}: RMSE fit feature.}
-  \item{\code{coverage_feat}: CpG coverage feature.} \item{\code{lb_feat}:
-  Lower Bound feature.}}
+following elements: \itemize{ \item{ \code{W}: An Nx(M+1) matrix with the
+optimized parameter values. Each row of the matrix corresponds to each
+element of the list X; if X is a matrix, then N = 1. The columns are of the
+same length as the parameter vector w (i.e. number of basis functions). }
+\item{ \code{W_Sigma}: A list with covariance matrices for each element row
+in W.} \item{ \code{basis}: The basis object. } \item{\code{nll_feat}: NLL
+fit feature.} \item{\code{rmse_feat}: RMSE fit feature.}
+\item{\code{coverage_feat}: CpG coverage feature.} \item{\code{lb_feat}:
+Lower Bound feature.}}
 }
 \usage{
 human_fit_mean

@@ -1,0 +1,23 @@
+---
+title: 'BSDMR: a region-based method for quantitating the conservation and divergence
+  of methylation patterns between species by high order features'
+author:
+- name: Hongen Kang
+  affiliation: National Genomics Data Center, Beijing Institute of Genomics, Chinese
+    Academy of Sciences / China National Center for Bioinformation, Beijing 100101,
+    China
+  email: geneprophet@163.com or kanghongen2018m@big.ac.cn
+output:
+  html_document: default
+  pdf_document: default
+package: BSDMR
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  fig.show = "asis",
+  out.width = "100%"
+  )
+```
+

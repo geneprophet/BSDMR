@@ -32,22 +32,22 @@ must contain.}
 }
 \value{
 A \code{list} object containing the two elements: \itemize{ \item{
-  \code{met}: A list containing methylation region data, where each entry in
-  the list is an \eqn{L_{i} X D} dimensional matrix, where \eqn{L_{i}}
-  denotes the number of CpGs found in region \code{i}. The columns contain
-  the following information: \enumerate{ \item{ 1st column: Contains the
-  locations of CpGs relative to centre. Note that the actual locations are
-  scaled to the [-1,1] region. } \item{ 2nd column: Contains the total 
-  number of reads at each CpG location.} \item{ 3rd column: Contains the
-  methylated reads at each CpG location.} }.
-  Rownames of each matrix contain the actual CpG genomic
-  coordinates as <chr>:<location>. } \item{ \code{anno}: The annotation
-  object.} } Note: The lengths of \code{met} and \code{anno} should match.
+\code{met}: A list containing methylation region data, where each entry in
+the list is an \eqn{L_{i} X D} dimensional matrix, where \eqn{L_{i}}
+denotes the number of CpGs found in region \code{i}. The columns contain
+the following information: \enumerate{ \item{ 1st column: Contains the
+locations of CpGs relative to centre. Note that the actual locations are
+scaled to the \link{-1,1} region. } \item{ 2nd column: Contains the total
+number of reads at each CpG location.} \item{ 3rd column: Contains the
+methylated reads at each CpG location.} }.
+Rownames of each matrix contain the actual CpG genomic
+coordinates as <chr>:<location>. } \item{ \code{anno}: The annotation
+object.} } Note: The lengths of \code{met} and \code{anno} should match.
 }
 \description{
 \code{create_region_object} creates genomic regions (e.g. forms
-  methylation regions data) using as input methylation and annotation data
-  with genomic regions of interest.
+methylation regions data) using as input methylation and annotation data
+with genomic regions of interest.
 }
 \examples{
 \dontrun{

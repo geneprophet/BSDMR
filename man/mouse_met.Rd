@@ -7,11 +7,11 @@
 \format{
 A \code{GRanges} object.
 
-  The GRanges object contains three additional metadata columns:
-  \itemize{ \item{ \code{methylated_reads}: the number if methylated reads for each C sites.}  
-  \item{ \code{total_reads}: Total number of reads for each C sites.} 
-  \item{ \code{type}:the C-context type: CG,CHG, or CHH} 
-  }
+The GRanges object contains three additional metadata columns:
+\itemize{ \item{ \code{methylated_reads}: the number if methylated reads for each C sites.}
+\item{ \code{total_reads}: Total number of reads for each C sites.}
+\item{ \code{type}:the C-context type: CG,CHG, or CHH}
+}
 }
 \usage{
 mouse_met

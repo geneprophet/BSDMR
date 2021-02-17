@@ -58,25 +58,25 @@ distribution is used as prior for the precision parameter tau.}
 }
 \value{
 An object of class \code{infer_profiles_vb_}"obs_model" with the
-  following elements: \itemize{ \item{ \code{W}: An Nx(M+1) matrix with the
-  optimized parameter values. Each row of the matrix corresponds to each
-  element of the list X; if X is a matrix, then N = 1. The columns are of the
-  same length as the parameter vector w (i.e. number of basis functions). }
-  \item{ \code{W_Sigma}: A list with covariance matrices for each element row
-  in W.} \item{ \code{basis}: The basis object. } \item{\code{nll_feat}: NLL
-  fit feature.} \item{\code{rmse_feat}: RMSE fit feature.}
-  \item{\code{coverage_feat}: CpG coverage feature.} \item{\code{lb_feat}:
-  Lower Bound feature.}}
+following elements: \itemize{ \item{ \code{W}: An Nx(M+1) matrix with the
+optimized parameter values. Each row of the matrix corresponds to each
+element of the list X; if X is a matrix, then N = 1. The columns are of the
+same length as the parameter vector w (i.e. number of basis functions). }
+\item{ \code{W_Sigma}: A list with covariance matrices for each element row
+in W.} \item{ \code{basis}: The basis object. } \item{\code{nll_feat}: NLL
+fit feature.} \item{\code{rmse_feat}: RMSE fit feature.}
+\item{\code{coverage_feat}: CpG coverage feature.} \item{\code{lb_feat}:
+Lower Bound feature.}}
 }
 \description{
 General purpose functions for inferring latent profiles for
-  different observation models using Variational Bayes (VB). Current
-  observation models are: 'bernoulli', 'binomial'.
+different observation models using Variational Bayes (VB). Current
+observation models are: 'bernoulli', 'binomial'.
 }
 \section{Details}{
  The modelling and mathematical details for inferring
-  profiles using mean-field variational inference are explained here:
-  \url{http://rpubs.com/cakapourani/variational-bayes-bpr}
+profiles using mean-field variational inference are explained here:
+\url{http://rpubs.com/cakapourani/variational-bayes-bpr}
 }
 
 \examples{

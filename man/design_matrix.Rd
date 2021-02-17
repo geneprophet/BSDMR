@@ -27,7 +27,7 @@ A design matrix object
 }
 \description{
 These functions call the appropriate methods depending on the
-  class of the object \code{obj} to create RBF design matrices.
+class of the object \code{obj} to create RBF design matrices.
 }
 \author{
 Hongen Kang  \email{geneprophet@163.com}

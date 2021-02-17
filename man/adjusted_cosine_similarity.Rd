@@ -21,13 +21,13 @@ adjusted_cosine_similarity(
 \item{no_cores}{Number of cores given as input}
 }
 \value{
-a vector of Normalized adjusted cosine similarity [0-1], 
- Note: the more close to 1 indicates the profiles of region more similar,
- the more close to 0 indicates the profiles more different.
+a vector of Normalized adjusted cosine similarity \link{0-1},
+Note: the more close to 1 indicates the profiles of region more similar,
+the more close to 0 indicates the profiles more different.
 }
 \description{
-compute the similarity of queryProfiles and subjectProfiles by adjusted cosine 
-             distance and return a vector of numeric match the queryProfiles and subjectProfiles.
+compute the similarity of queryProfiles and subjectProfiles by adjusted cosine
+distance and return a vector of numeric match the queryProfiles and subjectProfiles.
 }
 \examples{
 \dontrun{

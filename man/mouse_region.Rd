@@ -7,10 +7,10 @@
 \format{
 A \code{GRanges} object.
 The GRanges object contains three additional metadata columns:
-     \itemize{ \item{ \code{id}: EnsemblID or liftOver FAILED,indicates the region mapping failed between seocies}  
-     \item{ \code{center}: the center of the region,(strat+end)/2, or NA if liftOver FAILED} 
-     \item{ \code{annotation}:the annotation of the region, it can be promoter,downstream,gene,UTR... 
-             or the reason of liftOver FAILED.} }
+\itemize{ \item{ \code{id}: EnsemblID or liftOver FAILED,indicates the region mapping failed between seocies}
+\item{ \code{center}: the center of the region,(strat+end)/2, or NA if liftOver FAILED}
+\item{ \code{annotation}:the annotation of the region, it can be promoter,downstream,gene,UTR...
+or the reason of liftOver FAILED.} }
 }
 \usage{
 mouse_region

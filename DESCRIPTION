@@ -1,13 +1,12 @@
 Package: BSDMR
 Type: Package
-Title: Find DMRs between species by high order methylation profile
-Version: 1.0
+Title: a region-based method for quantitating the conservation and divergence of methylation patterns between species by high order features
+Version: 0.9.1
 Date: 2020-08-27
 Authors@R: person("Hongen", "Kang", email = "geneprophet@163.com", role = c("aut", "cre"))
 Author: Hongen Kang
 Maintainer: Hongen Kang <geneprophet@163.com>
-Description: Extracting higher order methylation profiles by GLM to find DMRs between species.
-             A region-based method to find DMR.
+Description: Extracting higher order methylation profiles by GLM to quantitate the conservation and divergence of methylation patterns between different species.
 Encoding: UTF-8
 LazyData: true
 License: MIT + file LICENSE
@@ -36,6 +35,7 @@ LinkingTo:
     Rcpp,
     RcppArmadillo
 RoxygenNote: 7.1.1
+VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
 biocViews: DNAMethylation,
@@ -43,3 +43,4 @@ biocViews: DNAMethylation,
     Epigenetics,
     FeatureExtraction,
     Bayesian
+Roxygen: list(markdown = TRUE)

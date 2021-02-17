@@ -4,10 +4,10 @@
 \name{BSDMR}
 \alias{BSDMR}
 \alias{BSDMR-package}
-\title{BSDMR : Find DMRs between species by high order methylation profile}
+\title{BSDMR: a region-based method for quantitating the conservation and divergence of methylation patterns between species by high order features}
 \description{
 Extracting higher order methylation features by GLM to find DMRs between species.
-             A region-based method to find DMR.
+A region-based method to find DMR.
 }
 \author{
 Hongen Kang  \email{geneprophet@163.com}

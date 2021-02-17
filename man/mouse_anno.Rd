@@ -8,9 +8,9 @@
 A \code{GRanges} object.
 
 The GRanges object contains three additional metadata columns:
-     \itemize{ \item{ \code{id}: EnsemblID}  
-     \item{ \code{center}: the center of the region,(strat+end)/2} 
-     \item{ \code{annotation}:the annotation of the region, it can be promoter,downstream,gene,UTR...} }
+\itemize{ \item{ \code{id}: EnsemblID}
+\item{ \code{center}: the center of the region,(strat+end)/2}
+\item{ \code{annotation}:the annotation of the region, it can be promoter,downstream,gene,UTR...} }
 }
 \usage{
 mouse_anno
