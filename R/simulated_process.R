@@ -179,8 +179,8 @@
 # length(unique(subjectHits(overlaps2)))
 # #查看mouse_reion中成功liftOver中转换成功的区域有多少
 # length(which(mouse_region$id!="liftOver FAILED"))
-# #查看有多少DMR被找出来了
-# length(which(similarity<0.1))
+# #查看有多少DMR或CMR被找出来了
+# length(which(similarity>0.9))
 # #查看最终多少DMR是真的DMR
 # overlaps3 <- GenomicRanges::findOverlaps(query = mouse_region[which(similarity<0.1)], subject = mouse_region_60, ignore.strand = T)
 # overlaps4 <- GenomicRanges::findOverlaps(query = human_region[which(similarity<0.1)], subject = human_region_60, ignore.strand = T)
@@ -188,6 +188,6 @@
 # #length(unique(subjectHits(overlaps4)))
 # length(subjectHits(overlaps3))
 # length(subjectHits(overlaps4))
-# 
+
 
 
