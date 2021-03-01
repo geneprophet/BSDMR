@@ -1,7 +1,7 @@
 Package: BSDMR
 Type: Package
 Title: a region-based method for quantitating the conservation and divergence of methylation patterns between species by high order features
-Version: 0.9.1
+Version: 1.0.1
 Date: 2020-08-27
 Authors@R: person("Hongen", "Kang", email = "geneprophet@163.com", role = c("aut", "cre"))
 Author: Hongen Kang
