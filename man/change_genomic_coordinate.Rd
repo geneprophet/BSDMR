@@ -18,8 +18,8 @@ Generally, the inputRegin is a result of \code{cluster_sites_to_region}.}
 
 \item{chainFile}{a chainFile of liftOver. for example, if you want mapping the the inputRegion from hg38 to mm10,
 then the chainFile must be "hg38ToMm10.over.chain".
-you can download from the source
-\url{http://hgdownload.soe.ucsc.edu/downloads.html#liftover}}
+ you can download from the source
+  <http://hgdownload.soe.ucsc.edu/downloads.html#liftover>}
 
 \item{targetAnnotation}{the \code{GRanges} object to annotate the result of liftOver, a \code{GRanges} object.
 Generally, the targetAnnotation is a result of \code{read_annotation}.

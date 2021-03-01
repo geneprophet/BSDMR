@@ -12,15 +12,15 @@ read_annotation(file)
 \value{
 A \code{GRanges} object.
 The GRanges object contains three additional metadata columns:
-\itemize{ \item{ \code{id}: EnsemblID}
-\item{ \code{center}: the center of the region,(strat+end)/2}
-\item{ \code{annotation}:the annotation of the region, it can be promoter,downstream,gene,UTR...} }
+     \itemize{ \item{ \code{id}: EnsemblID}  
+     \item{ \code{center}: the center of the region,(strat+end)/2} 
+     \item{ \code{annotation}:the annotation of the region, it can be promoter,downstream,gene,UTR...} }
 }
 \description{
 \code{read_annotation} reads a file containing annotation data, which
-will be used to select genomic regions for downstream analysis.
-The annotation file format is the following: "chromosome", "EnsemblID", "name","start", "end",
-"strand".
+  will be used to select genomic regions for downstream analysis.
+  The annotation file format is the following: "chromosome", "EnsemblID", "name","start", "end",
+  "strand".
 }
 \examples{
 # Obtain the path to files

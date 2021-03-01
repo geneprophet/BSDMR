@@ -4,4 +4,3 @@
 ^README\.Rmd$
 ^data-raw$
 ^appveyor\.yml$
-inst/extdata

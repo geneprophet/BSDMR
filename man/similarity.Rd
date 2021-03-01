@@ -5,15 +5,15 @@
 \alias{similarity}
 \title{a example output of \code{adjusted_cosine_similarity }}
 \format{
-A vector of Normalized adjusted cosine similarity \link{0-1},
+A vector of Normalized adjusted cosine similarity [0-1],
 }
 \usage{
 similarity
 }
 \value{
 A vector of numeric
-Note: the more close to 1 indicates the profiles of region more similar,
-the more close to 0 indicates the profiles more different.
+ Note: the more close to 1 indicates the profiles of region more similar,
+ the more close to 0 indicates the profiles more different.
 }
 \description{
 \code{similarity <- adjusted_cosine_similarity(queryProfiles=human_fit_profiles,

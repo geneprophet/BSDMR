@@ -33,8 +33,8 @@ A ggplot2 object.
 }
 \description{
 Function for plotting the inferred methylation profiles across a
-given region, and optionally the mean methylation rate together with the
-observed methylation data, using \code{\link{ggplot2}}.
+  given region, and optionally the mean methylation rate together with the
+  observed methylation data, using \code{\link{ggplot2}}.
 }
 \examples{
 \dontrun{

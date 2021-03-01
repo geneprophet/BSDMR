@@ -109,7 +109,7 @@
 # # awk -F "\t" '{if($3=="NA"){print $5FS$1FS$6FS$7FS$8FS$9FS$10} else {print $5FS$1FS$6FS$3FS$4FS$9FS$10}}' mouse_merge.txt > mouse_simulated_3.txt &
 #
 # #
-# #step1. read files
+# # #step1. read files
 # file <- system.file("extdata", "human_simulated_1.txt", package = "BSDMR")
 # human_met <- read_methylation_report(file,min_coverage=10,type = "CG")
 # file <- system.file("extdata", "mouse_simulated_1.txt", package = "BSDMR")
@@ -153,14 +153,16 @@
 # 
 # #step6. computer the adjusted consine distance of profiles and measure the similarity
 # similarity <- adjusted_cosine_similarity(queryProfiles=human_fit_profiles,subjectProfiles=mouse_fit_profiles)
-# which(similarity>0.9)
+# data=data.frame(similarity_score=similarity[which(!is.na(similarity))])
+# ggplot2::ggplot(data = data,aes(x=similarity_score))+geom_histogram(binwidth = 0.1)
+# # which(similarity>0.9)
 # length(similarity[which(!is.na(similarity))])
-# i=15
-# plot_infer_profiles(region = i, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
-#                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[i]))
-# plot_infer_profiles(region = i, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
-#                     obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[i]))
-
+# # i=15
+# # plot_infer_profiles(region = i, obj_prof = human_fit_profiles,obj_mean = human_fit_mean,
+# #                     obs = human_obj, title = paste0("Gene ID ",human_obj$anno$id[i]))
+# # plot_infer_profiles(region = i, obj_prof = mouse_fit_profiles,obj_mean = mouse_fit_mean,
+# #                     obs = mouse_obj, title = paste0("Gene ID ",mouse_obj$anno$id[i]))
+# 
 # library(readr)
 # selected_human_60_CpG_islands <- read_delim("inst/extdata/selected_human_60_CpG_islands.txt",
 #             "\t", escape_double = FALSE, col_names = FALSE,trim_ws = TRUE)
@@ -178,10 +180,10 @@
 # #查看mouse_reion中成功liftOver中转换成功的区域有多少
 # length(which(mouse_region$id!="liftOver FAILED"))
 # #查看有多少DMR被找出来了
-# length(which(similarity>0.9))
+# length(which(similarity<0.1))
 # #查看最终多少DMR是真的DMR
-# overlaps3 <- GenomicRanges::findOverlaps(query = mouse_region[which(similarity>0.9)], subject = mouse_region_60, ignore.strand = T)
-# overlaps4 <- GenomicRanges::findOverlaps(query = human_region[which(similarity>0.9)], subject = human_region_60, ignore.strand = T)
+# overlaps3 <- GenomicRanges::findOverlaps(query = mouse_region[which(similarity<0.1)], subject = mouse_region_60, ignore.strand = T)
+# overlaps4 <- GenomicRanges::findOverlaps(query = human_region[which(similarity<0.1)], subject = human_region_60, ignore.strand = T)
 # #length(unique(subjectHits(overlaps3)))
 # #length(unique(subjectHits(overlaps4)))
 # length(subjectHits(overlaps3))
